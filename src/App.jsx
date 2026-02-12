@@ -6,6 +6,10 @@ import Header from './components/userinterface/homepage/Header';
 import BookCategoryDetails from './components/userinterface/bookcategorypage/BookCategoryDetails';
 import BookDetailPage from './components/userinterface/bookdetailpage/BookDetailPage';
 import DisplayCartDetail from './components/userinterface/mycart/DisplayCartDetail';
+import Wishlist from './components/userinterface/bookdetailpage/Wishlist';
+import Aboutus from './components/userinterface/homepage/Aboutus';
+import Contact from './components/userinterface/homepage/Contact';
+import Authors from './components/userinterface/homepage/Authors';
 
 function App() {
 
@@ -21,6 +25,10 @@ function App() {
           <Route element={<BookDetailPage/>} path='/bookdetailpage'></Route>
 
           <Route element={<DisplayCartDetail/>} path='/cart'></Route>
+          <Route element={<Wishlist/>} path='/wish'></Route>
+          <Route element={<Aboutus/>} path='/about'></Route>
+          <Route element={<Contact/>} path='/contact'></Route>
+          <Route element={<Authors/>} path='/author'></Route>
         </Routes>
       </Router>
     </div>
