@@ -1,203 +1,188 @@
-export default function BookLeftDetails()
-{
-    var book=['Engineering Entrance','Mediicial Entrance','Literature & Fiction','History','Science'];
+import { useState } from "react";
 
-    const fetchbook=()=>{
-        return book.map((item,i)=>{
-            return(<div>
-                {item}
-            </div>)
-        })
-    }
+export default function BookLeftDetails() {
 
+  const [activeAccordion, setActiveAccordion] = useState("collapseCategory");
 
-    return(<div style={{margin:10,padding:10}}>
-        <div className="accordion" id="accordionExample">
-            <div className="accordion-item">
+  const [filters, setFilters] = useState({
+    category: [],
+    publisher: [],
+    binding: [],
+    paperSize: [],
+    paperQuality: [],
+    rating: [],
+    price: 2.5,
+  });
 
-                 <div style={{textAlign:'center',margin:8,fontSize:18,fontWeight:'bold'}}>Filters</div>
+  // ---------- DATA ----------
+  const categories = [
+    "Engineering Entrance",
+    "Medical Entrance",
+    "Literature & Fiction",
+    "History",
+    "Science",
+  ];
 
-                <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    CATEGORIES 
-                   </button>
-                </h2>
+  const publishers = [
+    "Starlight Press",
+    "Quantum Book",
+    "Heritage Publishing",
+    "Crison Quill",
+  ];
 
-                <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                     {fetchbook()}
-                    </div>
-                </div>
+  const bindings = ["Paperback", "Hardcover", "Spiral Binding"];
+  const paperSizes = ["A4", "A5", "B5"];
+  const paperQuality = ["70GSM", "80GSM Matte", "120GSM Glossy"];
+  const ratings = ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"];
 
-            </div>
+  // ---------- HANDLERS ----------
+  const handleCheckbox = (type, value) => {
+    setFilters((prev) => {
+      const exists = prev[type].includes(value);
+
+      return {
+        ...prev,
+        [type]: exists
+          ? prev[type].filter((v) => v !== value)
+          : [...prev[type], value],
+      };
+    });
+  };
+
+  const handlePriceChange = (e) => {
+    setFilters((prev) => ({
+      ...prev,
+      price: e.target.value,
+    }));
+  };
+
+  const renderCheckboxList = (list, type) =>
+    list.map((item, i) => {
+      const id = `${type}-${i}`;
+      return (
+        <div className="form-check" key={id}>
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id={id}
+            checked={filters[type].includes(item)}
+            onChange={() => handleCheckbox(type, item)}
+          />
+          <label className="form-check-label" htmlFor={id}>
+            {item}
+          </label>
+        </div>
+      );
+    });
+
+  return (
+    <div style={{ margin: 10, padding: 10 }}>
+      <div className="accordion">
+
+        <div className="text-center fs-5 fw-bold mb-3">Filters</div>
+
+        <Accordion
+          title="CATEGORIES"
+          id="collapseCategory"
+          activeAccordion={activeAccordion}
+          setActiveAccordion={setActiveAccordion}
+        >
+          {renderCheckboxList(categories, "category")}
+        </Accordion>
+
+        {/* PRICE */}
+        <div className="mt-3 mb-3">
+          <label className="form-label fw-bold">
+            PRICE : ₹{filters.price}K
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="0"
+            max="5"
+            step="0.5"
+            value={filters.price}
+            onChange={handlePriceChange}
+            style={{ accentColor: "blue" }}
+          />
         </div>
 
+        <Accordion
+          title="PUBLISHER"
+          id="collapsePublisher"
+          activeAccordion={activeAccordion}
+          setActiveAccordion={setActiveAccordion}
+        >
+          {renderCheckboxList(publishers, "publisher")}
+        </Accordion>
 
-        <div style={{marginTop:10}}>
-            <label for="range3" className="form-label m-2 fw-bold">PRICE</label>
-            <input  style={{ accentColor: "blue" }} type="range" class="form-range" min="0" max="5" step="0.5" id="range3"></input>
-        </div>
+        <Accordion
+          title="BINDING TYPE"
+          id="collapseBinding"
+          activeAccordion={activeAccordion}
+          setActiveAccordion={setActiveAccordion}
+        >
+          {renderCheckboxList(bindings, "binding")}
+        </Accordion>
 
+        <Accordion
+          title="PAPER SIZE & QUALITY"
+          id="collapsePaper"
+          activeAccordion={activeAccordion}
+          setActiveAccordion={setActiveAccordion}
+        >
+          <div className="fw-bold">Paper Size</div>
+          {renderCheckboxList(paperSizes, "paperSize")}
 
-    <div>
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
+          <div className="fw-bold mt-2">Paper Quality</div>
+          {renderCheckboxList(paperQuality, "paperQuality")}
+        </Accordion>
 
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    PUBLISHER
-                </button>
-               </h2>
+        <Accordion
+          title="CUSTOMER RATING"
+          id="collapseRating"
+          activeAccordion={activeAccordion}
+          setActiveAccordion={setActiveAccordion}
+        >
+          {renderCheckboxList(ratings, "rating")}
+        </Accordion>
 
-              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="sp"/>
-                      <label class="form-check-label" for="sp">Starlight Press</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="qb"/>
-                      <label class="form-check-label" for="qb">Quantum Book</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="hp"/>
-                      <label class="form-check-label" for="hp">Heritage Publishing</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="cq"/>
-                      <label class="form-check-label" for="cq">Crison Quill</label>
-                    </div>
-
-                </div>
-              </div>
-              
-            </div>
-
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    BINDING TYPE
-                </button>
-               </h2>
-
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="pb"/>
-                      <label class="form-check-label" for="pb">Paperback</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="hc"/>
-                      <label class="form-check-label" for="hc">Hardcover</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="sb"/>
-                      <label class="form-check-label" for="sb">Spiral Binding</label>
-                    </div>
-
-                  </div>
-                </div> 
-            </div>
-
-
-             <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    PAPER SIZE & QUALITY
-                </button>
-               </h2>
-
-              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-
-                    <div>Paper Size</div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="A4"/>
-                      <label class="form-check-label" for="A4">A4</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="A5"/>
-                      <label class="form-check-label" for="A5">A5</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="B5"/>
-                      <label class="form-check-label" for="B5">B5</label>
-                    </div>
-
-                    <div>Paper Quality</div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="GSM1"/>
-                      <label class="form-check-label" for="GSM1">70GSM</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="GSM2"/>
-                      <label class="form-check-label" for="GSM2">80GSM Matte</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="GSM3"/>
-                      <label class="form-check-label" for="GSM3">120GSM Glossy</label>
-                    </div>
-
-                  </div>
-                </div>  
-            </div>
-
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    CUSTOMER RATING
-                </button>
-               </h2>
-
-              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="5star"/>
-                      <label class="form-check-label" for="5star">⭐⭐⭐⭐⭐</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="4star"/>
-                      <label class="form-check-label" for="4star">⭐⭐⭐⭐</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="3star"/>
-                       <label class="form-check-label" for="3star">⭐⭐⭐</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="2star"/>
-                      <label class="form-check-label" for="2star">⭐⭐</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="1star"/>
-                      <label class="form-check-label" for="1star">⭐</label>
-                    </div>
-
-                  </div>
-                </div> 
-            </div>
-            
-        </div>    
+      </div>
     </div>
+  );
+}
 
+// ---------- ACCORDION ----------
+function Accordion({
+  title,
+  id,
+  children,
+  activeAccordion,
+  setActiveAccordion,
+}) {
+  const isOpen = activeAccordion === id;
 
+  return (
+    <div className="accordion-item">
+      <h2 className="accordion-header">
+        <button
+          className={`accordion-button ${!isOpen ? "collapsed" : ""}`}
+          type="button"
+          onClick={() => setActiveAccordion(isOpen ? null : id)}
+        >
+          {title}
+        </button>
+      </h2>
 
-</div>)
+      {/* React controls visibility */}
+      <div
+        className="accordion-collapse"
+        style={{ display: isOpen ? "block" : "none" }}
+      >
+        <div className="accordion-body">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
 }
