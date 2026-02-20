@@ -1,0 +1,19 @@
+.book-image-container {
+    height: 260px;
+    transition: all 0.3s ease;
+}
+
+.book-image-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.book-image {
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.book-image-container:hover .book-image {
+    transform: scale(1.05);
+}

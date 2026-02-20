@@ -90,7 +90,7 @@ export default function EditorScroll({show})
         <div style={{ position: "relative" }}>
 
           <div onClick={handleNext} style={{ position: "absolute" ,zIndex:2, top:'28%', left:'0.5%', cursor:'pointer' }}>
-            <i class="bi bi-arrow-left-circle-fill" style={{fontSize:22}}></i>
+            <i className="bi bi-arrow-left-circle-fill" style={{fontSize:22}}></i>
          </div>
 
        <Slider ref={scrollRef} {...settings}>
@@ -98,7 +98,7 @@ export default function EditorScroll({show})
         </Slider>
 
          <div onClick={handlePrev} style={{ position: "absolute" ,zIndex:2, cursor:'pointer', top:'28%',right:'0.5%' }}>
-            <i class="bi bi-arrow-right-circle-fill" style={{fontSize:22}}></i>
+            <i className="bi bi-arrow-right-circle-fill" style={{fontSize:22}}></i>
          </div>
 
         
