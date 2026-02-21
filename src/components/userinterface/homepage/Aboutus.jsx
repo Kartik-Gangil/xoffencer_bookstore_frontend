@@ -1,5 +1,6 @@
 import Header from "./Header";
 import logo from "../../../assets/logo.png";
+import Footer from "./Footer";
 
 export default function Aboutus()
 {
@@ -8,14 +9,17 @@ export default function Aboutus()
             <Header/>
         </div>
 
-        <div className="row m-5 p-5">
-            <div className="col-lg-6">
-                <img src={logo} style={{width:'40%'}}/>
-            </div>
 
-            <div className="col-lg-6">
-                 <div style={{width:'85%',height:'auto', borderRadius:10,backgroundColor:'white',margin:5,marginTop:30,display:'flex',border:'1px solid grey'}}>      
-                    <div style={{padding:20,margin:10}}>
+        <div className="container py-5">
+
+            <div className="row align-items-center g-4">
+                <div className="col-12 col-lg-6 text-center">
+                  <img src={logo}  style={{ maxWidth: "280px" }}/>
+                </div>
+
+
+                <div className="col-12 col-lg-6">
+                    <div className="bg-white shadow-sm p-4 p-md-5" style={{borderRadius: 12,border: "1px solid #e0e0e0"}}>      
                         <h1>About Xoffencer</h1>
 
                         <div style={{fontSize:16,fontWeight:400,color:'#956f6f'}}>
@@ -25,21 +29,18 @@ export default function Aboutus()
                         <div style={{margin:5,marginTop:20,fontSize:18,fontWeight:500,lineHeight:1.2,letterSpacing:0.5,fontFamily:'Newsreader,serlief'}}>
                             Wellcome to the xoffencer international Book Publication House.Our mission is to discover And
                             champion both new and established voices in the literary world. We believe a great book is a
-                            conversation and our goal is to publish works that inspire, challenges, and entertrain.
-
+                            conversation and our goal is to publish works that inspire, challenges, and entertrain
                         </div>
                         
                     </div>
-
-                    
-                    
-
-                 </div>
-           
+                </div>
 
             </div>
 
         </div>
 
+<div>
+    <Footer/>
+</div>
     </div>)
 }

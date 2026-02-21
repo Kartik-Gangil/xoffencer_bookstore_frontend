@@ -10,6 +10,9 @@ import Wishlist from './components/userinterface/bookdetailpage/Wishlist';
 import Aboutus from './components/userinterface/homepage/Aboutus';
 import Contact from './components/userinterface/homepage/Contact';
 import Authors from './components/userinterface/homepage/Authors';
+import Signup from './components/userinterface/login/Signup';
+import Login from './components/userinterface/login/Login';
+import Publication from './components/userinterface/homepage/Publication';
 
 function App() {
 
@@ -29,6 +32,10 @@ function App() {
           <Route element={<Aboutus/>} path='/about'></Route>
           <Route element={<Contact/>} path='/contact'></Route>
           <Route element={<Authors/>} path='/author'></Route>
+
+          <Route element={<Signup/>} path='/signup'></Route>
+          <Route element={<Login/>} path='/login'></Route>
+          <Route element={<Publication/>} path='/public'></Route>
         </Routes>
       </Router>
     </div>

@@ -31,7 +31,7 @@ export default function EditorScroll({show})
 
   const showData=()=>{
     return data.map((item,i)=>{
-        return(<div style={{display:'flex',flexDirection:'column',border:'1px solid grey'}}>
+        return(<div style={{display:'flex',flexDirection:'column',border:'1px solid grey', }}>
             <div>
                 <img src={item.image}  style={{width:'70%'}}/>
             </div>
@@ -87,7 +87,7 @@ export default function EditorScroll({show})
 
 
         
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", cursor:'pointer' }}>
 
           <div onClick={handleNext} style={{ position: "absolute" ,zIndex:2, top:'28%', left:'0.5%', cursor:'pointer' }}>
             <i className="bi bi-arrow-left-circle-fill" style={{fontSize:22}}></i>

@@ -1,3 +1,4 @@
+import Footer from "../homepage/Footer";
 import Header from "../homepage/Header";
 import BookLeftDetails from "./BookLeftDetails";
 import BookRightDetails from "./BookRightDetails";
@@ -20,6 +21,10 @@ export default function BookCategoryDetails()
                 <BookRightDetails/>
             </div>
 
+        </div>
+
+        <div>
+            <Footer/>
         </div>
 
     </div>)

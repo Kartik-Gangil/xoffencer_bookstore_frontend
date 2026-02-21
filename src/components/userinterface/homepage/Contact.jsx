@@ -2,6 +2,7 @@ import Header from "./Header";
 import { useState } from "react";
 import { postData } from "../../../services/FetchNodeAdminServices";
 import Swal from "sweetalert2";
+import Footer from "./Footer";
 
 export default function Contact() {
 
@@ -107,6 +108,10 @@ export default function Contact() {
                 </div>
 
             </div>
+        </div>
+
+        <div>
+            <Footer/>
         </div>
     </div>)
 }

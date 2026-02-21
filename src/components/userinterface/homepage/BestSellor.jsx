@@ -14,7 +14,7 @@ export default function BestSellor()
 
                 <div style={{display:'flex'}}>
 
-                 <img src={item.image}  style={{width:'30%',height:'15%'}}/>
+                 <img src={item.image}  style={{width:'30%',height:'15%', cursor:'pointer'}}/>
 
                     <div style={{display:'flex',flexDirection:'column',margin:20}}>
                       <div style={{fontSize:16,fontWeight:'bold', color:'#6c757d'}}> {item.sno} </div>
